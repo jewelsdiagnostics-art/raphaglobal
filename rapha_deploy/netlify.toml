@@ -1,0 +1,22 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/directory"
+  to = "/rapha-initiative-mental-health-directory.html"
+  status = 200
+
+[[redirects]]
+  from = "/directory/"
+  to = "/rapha-initiative-mental-health-directory.html"
+  status = 200
+
+[[redirects]]
+  from = "/rapha-directory"
+  to = "/rapha-initiative-mental-health-directory.html"
+  status = 200
+
+[[redirects]]
+  from = "/rapha-directory/"
+  to = "/rapha-initiative-mental-health-directory.html"
+  status = 200

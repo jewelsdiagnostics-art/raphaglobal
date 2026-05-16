@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rapha Initiative Mental Health Services Directory - Ghana</title>
+
+  <style>
+    :root {
+      --blue: #173a5e;
+      --green: #7b9f25;
+      --light-green: #eef6df;
+      --light-blue: #eef5fb;
+      --dark: #1f2933;
+      --muted: #6b7280;
+      --white: #ffffff;
+      --border: #d9e2ec;
+      --danger: #b91c1c;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--dark);
+      background: linear-gradient(135deg, #f8fbff 0%, #f4f8ec 100%);
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--white);
+      border-bottom: 4px solid var(--green);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: auto;
+      padding: 18px 20px;
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .brand img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .brand-text h1 {
+      margin: 0;
+      color: var(--blue);
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      line-height: 1.1;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-text p {
+      margin: 6px 0 0;
+      color: var(--green);
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    button,
+    .btn {
+      border: none;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 11px 18px;
+      font-weight: 700;
+      transition: 0.25s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.95rem;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: #0f2c49;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: var(--light-green);
+      color: var(--blue);
+      border: 1px solid #c9dd9a;
+    }
+
+    .btn-secondary:hover {
+      background: #e2f0c8;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: auto;
+      padding: 28px 20px 60px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--blue), #245a8d);
+      color: var(--white);
+      border-radius: var(--radius);
+      padding: 34px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      right: -80px;
+      top: -80px;
+      background: rgba(123, 159, 37, 0.35);
+      border-radius: 50%;
+    }
+
+    .hero h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.6rem, 4vw, 2.8rem);
+      line-height: 1.1;
+    }
+
+    .hero p {
+      max-width: 850px;
+      margin: 0;
+      font-size: 1.05rem;
+      opacity: 0.96;
+    }
+
+    .notice {
+      margin-top: 18px;
+      padding: 16px 18px;
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      border-radius: 12px;
+      color: #7c2d12;
+    }
+
+    .controls {
+      margin: 24px 0;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 14px;
+    }
+
+    .control-group label {
+      display: block;
+      font-weight: 800;
+      color: var(--blue);
+      margin-bottom: 7px;
+      font-size: 0.92rem;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 1rem;
+      outline: none;
+      background: #fff;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(123, 159, 37, 0.16);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .tab {
+      background: var(--white);
+      color: var(--blue);
+      border: 1px solid var(--border);
+    }
+
+    .tab.active {
+      background: var(--green);
+      color: var(--white);
+      border-color: var(--green);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin: 22px 0;
+    }
+
+    .stat-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-card strong {
+      display: block;
+      color: var(--blue);
+      font-size: 1.8rem;
+      line-height: 1;
+    }
+
+    .stat-card span {
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .section-title {
+      margin: 28px 0 12px;
+      color: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .section-title h3 {
+      margin: 0;
+      font-size: 1.45rem;
+    }
+
+    .count-badge {
+      background: var(--light-blue);
+      color: var(--blue);
+      border: 1px solid #cfe0f1;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.88rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      min-height: 210px;
+      transition: 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: #bad383;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .card h4 {
+      margin: 0;
+      color: var(--blue);
+      font-size: 1.08rem;
+      line-height: 1.3;
+    }
+
+    .tag {
+      background: var(--light-green);
+      color: #4f6f12;
+      padding: 5px 9px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      height: fit-content;
+    }
+
+    .meta {
+      margin: 6px 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .meta strong {
+      color: var(--dark);
+    }
+
+    .card-actions {
+      margin-top: auto;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding-top: 12px;
+    }
+
+    .small-btn {
+      padding: 8px 12px;
+      font-size: 0.85rem;
+      background: var(--light-blue);
+      color: var(--blue);
+      border: 1px solid #cfe0f1;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .small-btn:hover {
+      background: #dcecf9;
+    }
+
+    .emergency {
+      background: #fef2f2;
+      color: #7f1d1d;
+      border: 1px solid #fecaca;
+      border-left: 6px solid var(--danger);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-top: 28px;
+    }
+
+    .accordion {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-top: 14px;
+    }
+
+    .accordion button {
+      width: 100%;
+      border-radius: 0;
+      background: #fff;
+      color: var(--blue);
+      justify-content: space-between;
+      padding: 17px 20px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+    }
+
+    .accordion-content {
+      display: none;
+      padding: 18px 20px;
+      background: #fbfdff;
+    }
+
+    .accordion.open .accordion-content {
+      display: block;
+    }
+
+    footer {
+      background: var(--blue);
+      color: var(--white);
+      padding: 28px 20px;
+      text-align: center;
+    }
+
+    footer p {
+      margin: 6px auto;
+      max-width: 900px;
+      opacity: 0.95;
+    }
+
+    .empty {
+      padding: 30px;
+      background: var(--white);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+      color: var(--muted);
+      text-align: center;
+      font-weight: 700;
+    }
+
+    @media (max-width: 980px) {
+      .controls,
+      .stats,
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .header-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .header-actions {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .brand {
+        align-items: flex-start;
+      }
+
+      .brand img {
+        width: 74px;
+        height: 74px;
+      }
+
+      .controls,
+      .stats,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 24px;
+      }
+    }
+
+    @media print {
+      header {
+        position: static;
+      }
+
+      .controls,
+      .tabs,
+      .header-actions,
+      .card-actions {
+        display: none !important;
+      }
+
+      body {
+        background: #fff;
+      }
+
+      .card,
+      .hero,
+      .stat-card {
+        box-shadow: none;
+      }
+
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/11908054/Dk5VaW6Y1KA7gXUM.jpg?Expires=1779925108&Signature=b6EppKkxsqxbeHAzz2AhrZPvpuQN6W71rgaW52IqyDgTgChEr4b84qbdTFQe0Ouu-MpOBzt~x7c1pleT0tdfkIUdpoWJgxKo3LBYgoVu4-ToChNowgW4J~3AMKA8XTOccykNIuB~7Jos6QhzQxIFQMU3i5uKY9wcLW6CAbC5Zf3FbTsxEPGKTD6FLgOF6bs6H7LykXa7vXebBk0NonviNupNe01CPiuzzbqHnZZCqBhwBXGNH9IEt1uvI1TB8eBipaWbX9SUMx~3SlbuaZesspzEO24kbBIHg4oir-FI0LhE4OngqOjewxk5u57hFt5~IWdJyOesZxBFkeO~lcQUmQ__&Key-Pair-Id=K3USGZIKWMDCSX" alt="Rapha Initiative Logo" />
+        <div class="brand-text">
+          <h1>Rapha Initiative</h1>
+          <p>Renew • Restore • Equip • Connect</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button class="btn btn-secondary" onclick="resetFilters()">Reset Filters</button>
+        <button class="btn btn-primary" onclick="window.print()">Print / Save PDF</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h2>Mental Health Services Directory - Ghana</h2>
+      <p>
+        An interactive Rapha Initiative resource document listing private clinics,
+        government hospitals, domestic violence support services, addiction treatment centres, 
+        and Regional Mental Health Coordinators in Ghana.
+      </p>
+    </section>
+
+    <div class="notice">
+      <strong>Important:</strong> This directory is based on information updated between
+      May 2020 and May 2026. Please verify phone numbers, service availability, and locations before referral or travel.
+    </div>
+
+    <section class="stats">
+      <div class="stat-card">
+        <strong id="totalCount">0</strong>
+        <span>Total Listings</span>
+      </div>
+      <div class="stat-card">
+        <strong>6</strong>
+        <span>Main Categories</span>
+      </div>
+      <div class="stat-card">
+        <strong>Ghana</strong>
+        <span>Coverage</span>
+      </div>
+      <div class="stat-card">
+        <strong>2020 - 2026</strong>
+        <span>Source Update Years</span>
+      </div>
+    </section>
+
+    <section class="controls" aria-label="Search and filter controls">
+      <div class="control-group">
+        <label for="searchInput">Search directory</label>
+        <input
+          id="searchInput"
+          type="search"
+          placeholder="Search by name, region, phone, service..."
+          oninput="renderDirectory()"
+        />
+      </div>
+
+      <div class="control-group">
+        <label for="categoryFilter">Filter by category</label>
+        <select id="categoryFilter" onchange="renderDirectory()">
+          <option value="all">All Categories</option>
+          <option value="Regional Mental Health Coordinator">Regional Mental Health Coordinators</option>
+          <option value="Private Mental Health Clinic">Private Mental Health Clinics</option>
+          <option value="Government Hospital with Psychiatrist">Government Hospitals with Psychiatrists</option>
+          <option value="Government Hospital with Psychologist">Government Hospitals with Psychologists</option>
+          <option value="Domestic & Sexual Violence Support">Domestic & Sexual Violence Support</option>
+          <option value="Addiction Treatment & Rehabilitation">Addiction Treatment & Rehabilitation</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="cityFilter">Filter by city / region</label>
+        <select id="cityFilter" onchange="renderDirectory()">
+          <option value="all">All Locations</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="tabs" aria-label="Quick category tabs">
+      <button class="tab active" data-category="all" onclick="setCategory('all')">All</button>
+      <button class="tab" data-category="Regional Mental Health Coordinator" onclick="setCategory('Regional Mental Health Coordinator')">Coordinators</button>
+      <button class="tab" data-category="Private Mental Health Clinic" onclick="setCategory('Private Mental Health Clinic')">Private Clinics</button>
+      <button class="tab" data-category="Government Hospital with Psychiatrist" onclick="setCategory('Government Hospital with Psychiatrist')">Psychiatrists</button>
+      <button class="tab" data-category="Government Hospital with Psychologist" onclick="setCategory('Government Hospital with Psychologist')">Psychologists</button>
+      <button class="tab" data-category="Domestic & Sexual Violence Support" onclick="setCategory('Domestic & Sexual Violence Support')">Support Services</button>
+      <button class="tab" data-category="Addiction Treatment & Rehabilitation" onclick="setCategory('Addiction Treatment & Rehabilitation')">Rehab Centres</button>
+    </section>
+
+    <section class="section-title">
+      <h3 id="directoryTitle">Directory Listings</h3>
+      <span class="count-badge" id="resultCount">0 results</span>
+    </section>
+
+    <section id="directoryGrid" class="grid"></section>
+
+    <section class="emergency">
+      <h3>Emergency and Immediate Support</h3>
+      <p>
+        If someone is in immediate danger, contact local emergency services or go to the
+        nearest hospital. For domestic violence-related support in Ghana, the Ministry
+        of Gender, Children and Social Protection Toll Free Helplines listed in this
+        document are:
+      </p>
+      <p><strong>0800 800 800 / 0800 900 900</strong></p>
+    </section>
+
+    <section>
+      <div class="accordion">
+        <button onclick="toggleAccordion(this)">
+          <span>Government Mental Health Staffing Note</span>
+          <span>+</span>
+        </button>
+        <div class="accordion-content">
+          <p>
+            Most tertiary, regional and district hospitals may have some of the following
+            professionals on staff:
+          </p>
+          <ul>
+            <li>Specialist Physician Assistants in Psychiatry</li>
+            <li>Registered Mental Health Nurses</li>
+            <li>Community Mental Health Officers</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <button onclick="toggleAccordion(this)">
+          <span>Licensing and Accreditation Note</span>
+          <span>+</span>
+        </button>
+        <div class="accordion-content">
+          <p>
+            For information about licensing and accreditation, please contact the Health
+            Facilities Regulatory Agency, the Ghana Medical and Dental Council, the Ghana
+            Psychological Council or the Nurses and Midwifery Council.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>Rapha Initiative Document</strong></p>
+    <p>Renew • Restore • Equip • Connect</p>
+    <p>
+      This interactive directory is prepared as a Rapha Initiative resource document.
+      Information should be verified before use.
+    </p>
+  </footer>
+
+  <script>
+    const directory = [
+      // REGIONAL MENTAL HEALTH COORDINATORS (Dec 2023)
+      { name: "Etornam Gblende", category: "Regional Mental Health Coordinator", city: "Greater Accra", phone: "0244249928", email: "egblende@gmail.com" },
+      { name: "Gifty Aboagyewaa", category: "Regional Mental Health Coordinator", city: "Upper East", phone: "020 202 4615" },
+      { name: "Bonsu Akosua Serwaah", category: "Regional Mental Health Coordinator", city: "Eastern", phone: "0244014348", email: "akosuabonsu@yahoo.com" },
+      { name: "Edem Tamakloe", category: "Regional Mental Health Coordinator", city: "Central", phone: "0244255594", email: "edem.ane2013@gmail.com" },
+      { name: "Ahorlu-Dzage Courage", category: "Regional Mental Health Coordinator", city: "Volta", phone: "0242671862", email: "luvmockluv@gmail.com" },
+      { name: "Mumuni Fuseini", category: "Regional Mental Health Coordinator", city: "Northern", phone: "0244508838", email: "mumunifb91@gmail.com" },
+      { name: "Joseph Yere", category: "Regional Mental Health Coordinator", city: "Bono", phone: "0209228954", email: "josephyere54@gmail.com" },
+      { name: "Faustina Nuako", category: "Regional Mental Health Coordinator", city: "Ashanti", phone: "0206331211 / 0507571674", email: "nuakofaustina@yahoo.com" },
+      { name: "Mary Owusu", category: "Regional Mental Health Coordinator", city: "Western", phone: "+233241517703", email: "fokuo.owusu@gmail.com" },
+      { name: "Basagnia Sylvester", category: "Regional Mental Health Coordinator", city: "Upper West", phone: "0241942999 / 0208093312", email: "melissa16.05.16@gmail.com" },
+      { name: "Augustine Bremfi", category: "Regional Mental Health Coordinator", city: "Bono East", phone: "0244041706", email: "Augustine.bremfi@ghs.gov.gh" },
+      { name: "James Gariba", category: "Regional Mental Health Coordinator", city: "Ahafo", phone: "0243160530", email: "jamesgariba1@gmail.com" },
+      { name: "Zantoli Simon Peter", category: "Regional Mental Health Coordinator", city: "North-East", phone: "0208787266", email: "wusubru@yahoo.com" },
+      { name: "Edward Owusu", category: "Regional Mental Health Coordinator", city: "Savana", phone: "0240431213", email: "edwardowusu537@gmail.com" },
+      { name: "Elijah Osei Boateng", category: "Regional Mental Health Coordinator", city: "Western North", phone: "0246989417", email: "mboaten4@gmail.com" },
+      { name: "Tetteh-Wayo Phyllis", category: "Regional Mental Health Coordinator", city: "Oti", phone: "0245608751", email: "ptwayo@gmail.com" },
+
+      // PRIVATE MENTAL HEALTH CLINICS
+      { name: "Accra Medical Centre", category: "Private Mental Health Clinic", city: "Accra", location: "Osu", phone: "0204 096 099 / 0233 099 096", website: "www.accramedicalcentre.com" },
+      { name: "Acrecity Medics", category: "Private Mental Health Clinic", city: "Accra", location: "Nester Square, Airport", phone: "0303 976 965", website: "www.acrecitymedics.com" },
+      { name: "Barnor Memorial Hospital", category: "Private Mental Health Clinic", city: "Accra", location: "Lartebiokorshie", phone: "0302 307 865 / 0244 971 693 / 0244 907 706" },
+      { name: "The Brain Clinic", category: "Private Mental Health Clinic", city: "Accra", location: "Abokobi", phone: "0244 717 750 / 0332 095 330 / 0332 095 326", website: "www.brainclinicgh.com" },
+      { name: "Cocoa Clinic", category: "Private Mental Health Clinic", city: "Accra", location: "Kaneshie", phone: "0302 229 265 / 0302 226 769 / 0302 229 234" },
+      { name: "Corporate Wellness Consultancy", category: "Private Mental Health Clinic", city: "Accra", location: "Dzorwulu", phone: "0246 677 218 / 0558 262 061" },
+      { name: "D’Stress Consult", category: "Private Mental Health Clinic", city: "Accra", location: "Dzorwulu", phone: "0545 444 445" },
+      { name: "Equilinks Counseling Services", category: "Private Mental Health Clinic", city: "Accra", location: "Sakumono", phone: "0244 444 594 / 0273 297 405", email: "info@equilinks.org", website: "www.equilinks.org" },
+      { name: "HealthLink Medical Clinic", category: "Private Mental Health Clinic", city: "Accra", location: "East Legon", phone: "0302 544 264 / 0242 222 230", website: "www.healthlinkclinic.com" },
+      { name: "Kalm Center", category: "Private Mental Health Clinic", city: "Accra", location: "Dansoman", phone: "0302 317 098 / 0558 195 282 / 0558 195 383" },
+      { name: "Lapaz Community Hospital", category: "Private Mental Health Clinic", city: "Accra", location: "Lapaz & Achimota", phone: "0501 606 507 / 0540 192 894" },
+      { name: "Mission Clinic", category: "Private Mental Health Clinic", city: "Accra", location: "Kokomlemle", phone: "0203 295 292 / 0247 241 447", email: "missionclinic1981@gmail.com" },
+      { name: "North Ridge Clinic", category: "Private Mental Health Clinic", city: "Accra", location: "North Ridge", phone: "0302 227 328" },
+      { name: "Nyaho Medical Centre", category: "Private Mental Health Clinic", city: "Accra", location: "Airport", phone: "0307 086 490", website: "www.nyahomedical.com" },
+      { name: "Peace Be Clinic", category: "Private Mental Health Clinic", city: "Accra", location: "Ashaley Botwe" },
+      { name: "Progressive Life Society - PLC", category: "Private Mental Health Clinic", city: "Accra", location: "Abelemkpe", phone: "0302 764 374 / 0270 631 361", website: "www.plcghana.org" },
+      { name: "Psalmist Medical Centre", category: "Private Mental Health Clinic", city: "Accra", location: "Dansoman", phone: "0503242969", website: "https://web.facebook.com/groups/1664842523670324" },
+      { name: "Sinel Specialist Hospital", category: "Private Mental Health Clinic", city: "Tema", location: "Tema", phone: "0302 972 615 / 0247 732 448 / 0244 578 820", email: "apptsinel@gmail.com", website: "www.sinelhospital.com" },
+      { name: "SmartHealth Consult Ghana", category: "Private Mental Health Clinic", city: "Accra", location: "PLC, Abelemkpe", phone: "0207 300 401" },
+      { name: "Total House Clinic", category: "Private Mental Health Clinic", city: "Accra", location: "Airport", phone: "0303 966 075 / 0577 062 505 / 0545 507 913 / 0244 631 775", email: "info@totalhouseclinic.com", website: "www.totalhouseclinic.com" },
+      { name: "The Trust Hospital", category: "Private Mental Health Clinic", city: "Accra", location: "Osu", phone: "0302 761 975", website: "www.thetrusthospital.com" },
+      { name: "Passion for Total Care Mental Health Clinic", category: "Private Mental Health Clinic", city: "Bolgatanga", location: "Basyonde, Tempane District, near Bawku", phone: "0244 768 957" },
+      { name: "Clinical Christian Psycho-Educational Services", category: "Private Mental Health Clinic", city: "Cape Coast", location: "Kwaprow-UCC", phone: "0277 705 172" },
+      { name: "FreeThink Health Consult", category: "Private Mental Health Clinic", city: "Kumasi", location: "Accra & Kumasi", phone: "0246 214 498 / 0501 374 550", website: "www.freethinkgh.com" },
+      { name: "MichMit Specialist Hospital", category: "Private Mental Health Clinic", city: "Kumasi", location: "Ejisu", phone: "0244 658 711", email: "dordoye@gmail.com" },
+      { name: "Recovery Pathways", category: "Private Mental Health Clinic", city: "Kumasi", location: "Stadium", phone: "0208 849 291", email: "recoverypathways@gmail.com" },
+      { name: "SmartHealth Consult Ghana", category: "Private Mental Health Clinic", city: "Kumasi", location: "Anwiam Clinic, Anloga Junction", phone: "0244 977 563" },
+      { name: "Shekhinah Clinic", category: "Private Mental Health Clinic", city: "Tamale", location: "Gurugu", phone: "0244 788 775 / 0206 574 415 / 0243 314 034", email: "shekhinahclinic626@gmail.com" },
+
+      // GOVERNMENT HOSPITALS - PSYCHIATRISTS
+      { name: "37 Military Hospital", category: "Government Hospital with Psychiatrist", city: "Accra" },
+      { name: "Accra Psychiatric Hospital", category: "Government Hospital with Psychiatrist", city: "Accra" },
+      { name: "Korle-Bu Teaching Hospital / UG Medical School", category: "Government Hospital with Psychiatrist", city: "Accra" },
+      { name: "Legon Hospital", category: "Government Hospital with Psychiatrist", city: "Accra" },
+      { name: "Pantang Hospital", category: "Government Hospital with Psychiatrist", city: "Accra" },
+      { name: "Police Hospital", category: "Government Hospital with Psychiatrist", city: "Accra" },
+      { name: "Ankaful Psychiatric Hospital", category: "Government Hospital with Psychiatrist", city: "Cape Coast" },
+      { name: "Komfo Anokye Teaching Hospital / KNUST SMS", category: "Government Hospital with Psychiatrist", city: "Kumasi" },
+      { name: "University Hospital, KNUST", category: "Government Hospital with Psychiatrist", city: "Kumasi" },
+
+      // GOVERNMENT HOSPITALS - PSYCHOLOGISTS
+      { name: "37 Military Hospital", category: "Government Hospital with Psychologist", city: "Accra" },
+      { name: "Accra Psychiatric Hospital", category: "Government Hospital with Psychologist", city: "Accra" },
+      { name: "Achimota Hospital", category: "Government Hospital with Psychologist", city: "Accra" },
+      { name: "Korle-Bu Teaching Hospital / UG Medical School / GICG Clinic", category: "Government Hospital with Psychologist", city: "Accra" },
+      { name: "LEKMA Hospital", category: "Government Hospital with Psychologist", city: "Accra" },
+      { name: "Pantang Hospital", category: "Government Hospital with Psychologist", city: "Accra" },
+      { name: "Police Hospital", category: "Government Hospital with Psychologist", city: "Accra" },
+      { name: "Ridge Hospital", category: "Government Hospital with Psychologist", city: "Accra" },
+      { name: "Upper East Regional Hospital", category: "Government Hospital with Psychologist", city: "Bolgatanga" },
+      { name: "Cape Coast Teaching Hospital", category: "Government Hospital with Psychologist", city: "Cape Coast" },
+      { name: "St. Anthony’s Hospital", category: "Government Hospital with Psychologist", city: "Dzodze" },
+      { name: "Eastern Regional Hospital", category: "Government Hospital with Psychologist", city: "Koforidua" },
+      { name: "Komfo Anokye Teaching Hospital / KNUST SMS", category: "Government Hospital with Psychologist", city: "Kumasi" },
+      { name: "St. Theresa’s Hospital", category: "Government Hospital with Psychologist", city: "Nandom" },
+      { name: "Bono Regional Hospital", category: "Government Hospital with Psychologist", city: "Sunyani" },
+      { name: "Swedru Municipal Hospital", category: "Government Hospital with Psychologist", city: "Agona Swedru" },
+      { name: "Effia Nkwanta Regional Hospital", category: "Government Hospital with Psychologist", city: "Takoradi" },
+      { name: "Tamale Teaching Hospital", category: "Government Hospital with Psychologist", city: "Tamale" },
+      { name: "Tema General Hospital", category: "Government Hospital with Psychologist", city: "Tema" },
+      { name: "The Trauma & Specialist Hospital", category: "Government Hospital with Psychologist", city: "Winneba" },
+
+      // DOMESTIC & SEXUAL VIOLENCE SUPPORT
+      { name: "Ministry of Gender, Children and Social Protection Toll Free Helpline", category: "Domestic & Sexual Violence Support", city: "All regions", phone: "0800 800 800 / 0800 900 900" },
+      { name: "DOVVSU - Domestic Violence & Victim Support Unit", category: "Domestic & Sexual Violence Support", city: "All regions", phone: "0302 775 677" },
+      { name: "Department of Social Welfare, Ministry of Gender", category: "Domestic & Sexual Violence Support", city: "All regions" },
+      { name: "The Ark Foundation", category: "Domestic & Sexual Violence Support", city: "Accra", phone: "0243 777 773" },
+      { name: "CEGENSA - Center for Gender Studies & Advocacy, University of Ghana", category: "Domestic & Sexual Violence Support", city: "Accra", notes: "For University of Ghana students only" },
+      { name: "CSVR - Centre for Suicide and Violence Research, University of Ghana", category: "Domestic & Sexual Violence Support", city: "Accra", phone: "0207 373 222" },
+      { name: "CHRAJ - Commission on Human Rights and Administrative Justice", category: "Domestic & Sexual Violence Support", city: "All regions" },
+      { name: "The DV Coalition - Domestic Violence Coalition", category: "Domestic & Sexual Violence Support", city: "Accra" },
+      { name: "FIDA-Ghana - International Federation of Women Lawyers", category: "Domestic & Sexual Violence Support", city: "Accra" },
+      { name: "The Gender Center - Gender Studies and Human Rights Documentation Center", category: "Domestic & Sexual Violence Support", city: "Accra", notes: "For basic school children only" },
+      { name: "KATH Abuse Clinic - Komfo Anokye Teaching Hospital", category: "Domestic & Sexual Violence Support", city: "Kumasi", phone: "0577 233 943" },
+      { name: "Hospitals and health facilities with Psychologists or Mental Health Nurses", category: "Domestic & Sexual Violence Support", city: "All regions" },
+      { name: "Marie Stopes International", category: "Domestic & Sexual Violence Support", city: "Some regions" },
+      { name: "NORSAAC", category: "Domestic & Sexual Violence Support", city: "Tamale" },
+      { name: "University Counselling Centers", category: "Domestic & Sexual Violence Support", city: "Some regions", notes: "For university students only" },
+      { name: "WiLDAF - Women in Law and Development Africa", category: "Domestic & Sexual Violence Support", city: "Accra" },
+
+      // ADDICTION TREATMENT & REHABILITATION
+      { name: "Accra Psychiatric Hospital Drug Treatment & Rehab Centre", category: "Addiction Treatment & Rehabilitation", city: "Accra", location: "Adabraka" },
+      { name: "Compassion Rehab Centre", category: "Addiction Treatment & Rehabilitation", city: "Accra", location: "Prampram", phone: "0245 940 997 / 0243 118 712" },
+      { name: "DAFAREC - Drug & Alcohol Free Awareness & Rehab Centre", category: "Addiction Treatment & Rehabilitation", city: "Accra", location: "Medie, New Town", phone: "0244 915 452 / 0553 933 505" },
+      { name: "House of St. Francis Alcohol & Drug Addiction Treatment & Rehab Centre", category: "Addiction Treatment & Rehabilitation", city: "Accra", location: "Ashaiman & Oyarifa", phone: "0205 695 903" },
+      { name: "Pantang Hospital Drug Treatment & Rehab Centre", category: "Addiction Treatment & Rehabilitation", city: "Accra", location: "Pantang" },
+      { name: "Redemption Place Rehab Centre", category: "Addiction Treatment & Rehabilitation", city: "Accra", location: "Weija", phone: "0246 161 793", email: "info@wabharmghana.com" },
+      { name: "Ankaful Psychiatric Hospital Rehab Centre", category: "Addiction Treatment & Rehabilitation", city: "Cape Coast", location: "Ankaful" },
+      { name: "Mercy Centre", category: "Addiction Treatment & Rehabilitation", city: "Cape Coast", location: "Brafo Yaw" },
+      { name: "MEMHREP - Mensah Mental Health Rehabilitation Project", category: "Addiction Treatment & Rehabilitation", city: "Kumasi", phone: "0322 395 627 / 0248 762 692 / 0561 791 329 / 0271 461 489", website: "www.memhrep.org" },
+      { name: "Willingway Rehab Centre", category: "Addiction Treatment & Rehabilitation", city: "Kumasi", location: "Ejisu-Kwamo", phone: "0246 617 309 / 0553 112 611 / 0545 205 479" },
+      { name: "Holy Child Health Centre", category: "Addiction Treatment & Rehabilitation", city: "Takoradi", location: "Fijai" }
+    ];
+
+    const grid = document.getElementById("directoryGrid");
+    const searchInput = document.getElementById("searchInput");
+    const categoryFilter = document.getElementById("categoryFilter");
+    const cityFilter = document.getElementById("cityFilter");
+    const resultCount = document.getElementById("resultCount");
+    const totalCount = document.getElementById("totalCount");
+    const directoryTitle = document.getElementById("directoryTitle");
+
+    totalCount.textContent = directory.length;
+
+    function normalize(value) {
+      return String(value || "").toLowerCase().trim();
+    }
+
+    function populateCities() {
+      const cities = [...new Set(directory.map(item => item.city).filter(Boolean))].sort();
+      cities.forEach(city => {
+        const option = document.createElement("option");
+        option.value = city;
+        option.textContent = city;
+        cityFilter.appendChild(option);
+      });
+    }
+
+    function makePhoneLink(phone) {
+      if (!phone) return "";
+      const firstNumber = phone.split("/")[0].replace(/\s+/g, "");
+      return `<a class="small-btn" href="tel:${firstNumber}">Call</a>`;
+    }
+
+    function makeEmailLink(email) {
+      if (!email) return "";
+      return `<a class="small-btn" href="mailto:${email}">Email</a>`;
+    }
+
+    function makeWebsiteLink(website) {
+      if (!website) return "";
+      const url = website.startsWith("http") ? website : `https://${website}`;
+      return `<a class="small-btn" href="${url}" target="_blank" rel="noopener">Website</a>`;
+    }
+
+    function cardTemplate(item) {
+      return `
+        <article class="card">
+          <div class="card-top">
+            <h4>${item.name}</h4>
+            <span class="tag">${item.city || "Ghana"}</span>
+          </div>
+
+          <p class="meta"><strong>Category:</strong> ${item.category}</p>
+          ${item.location ? `<p class="meta"><strong>Location:</strong> ${item.location}</p>` : ""}
+          ${item.phone ? `<p class="meta"><strong>Phone:</strong> ${item.phone}</p>` : ""}
+          ${item.email ? `<p class="meta"><strong>Email:</strong> ${item.email}</p>` : ""}
+          ${item.website ? `<p class="meta"><strong>Website:</strong> ${item.website}</p>` : ""}
+          ${item.notes ? `<p class="meta"><strong>Note:</strong> ${item.notes}</p>` : ""}
+
+          <div class="card-actions">
+            ${makePhoneLink(item.phone)}
+            ${makeEmailLink(item.email)}
+            ${makeWebsiteLink(item.website)}
+          </div>
+        </article>
+      `;
+    }
+
+    function renderDirectory() {
+      const query = normalize(searchInput.value);
+      const category = categoryFilter.value;
+      const city = cityFilter.value;
+
+      const filtered = directory.filter(item => {
+        const searchText = normalize(
+          `${item.name} ${item.category} ${item.city} ${item.location} ${item.phone} ${item.email} ${item.website} ${item.notes}`
+        );
+
+        const matchesSearch = !query || searchText.includes(query);
+        const matchesCategory = category === "all" || item.category === category;
+        const matchesCity = city === "all" || item.city === city;
+
+        return matchesSearch && matchesCategory && matchesCity;
+      });
+
+      resultCount.textContent = `${filtered.length} result${filtered.length === 1 ? "" : "s"}`;
+
+      if (category === "all") {
+        directoryTitle.textContent = "Directory Listings";
+      } else {
+        directoryTitle.textContent = category;
+      }
+
+      grid.innerHTML = filtered.length
+        ? filtered.map(cardTemplate).join("")
+        : `<div class="empty">No matching listings found. Try changing your search or filters.</div>`;
+    }
+
+    function setCategory(category) {
+      categoryFilter.value = category;
+
+      document.querySelectorAll(".tab").forEach(tab => {
+        tab.classList.toggle("active", tab.dataset.category === category);
+      });
+
+      renderDirectory();
+    }
+
+    function resetFilters() {
+      searchInput.value = "";
+      categoryFilter.value = "all";
+      cityFilter.value = "all";
+
+      document.querySelectorAll(".tab").forEach(tab => {
+        tab.classList.toggle("active", tab.dataset.category === "all");
+      });
+
+      renderDirectory();
+    }
+
+    function toggleAccordion(button) {
+      const accordion = button.parentElement;
+      const symbol = button.querySelector("span:last-child");
+      accordion.classList.toggle("open");
+      symbol.textContent = accordion.classList.contains("open") ? "−" : "+";
+    }
+
+    populateCities();
+    renderDirectory();
+  </script>
+</body>
+</html>
